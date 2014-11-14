@@ -306,11 +306,11 @@ static int task_plot_display_last_event(struct graph_info *ginfo,
 		event = pevent_data_event_from_type(ginfo->pevent, type);
 		if (pid == rec_pid)
 			trace_seq_printf(s, "CPU %d\n%s\n",
-					 record->cpu, event->name);
+					 record->cpu, event ? event->name : "unknown event");
 		else
 			trace_seq_printf(s, "%s-%d\n%s\n",
 					 pevent_data_comm_from_pid(ginfo->pevent, rec_pid),
-					 rec_pid, event->name);
+					 rec_pid, event ? event->name : "unknown event");
 	}
 	free_record(record);
 
